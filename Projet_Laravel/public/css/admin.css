@@ -1,0 +1,17 @@
+.formulaire{
+    align-self: center;
+    margin: 20px;
+    text-align: center;
+    background-color: cadetblue;
+    padding:40px;
+    width: 200px;
+    border-radius: 30px;
+}
+
+textarea{
+    resize:vertical;
+}
+
+.envoie{
+    padding:5px;
+}

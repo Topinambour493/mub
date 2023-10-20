@@ -1,0 +1,99 @@
+
+.infos_produit{
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+
+
+.image{
+    text-align: center;
+}
+
+.contain{
+    max-width: 400px;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+.acheter{
+    width:auto;
+    height: auto;
+    padding:5px;
+}
+
+h1{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    padding: 40px;    
+}
+
+
+.nomduproduit{
+    color:rgb(51, 135, 138);
+    font-size:60px;
+    text-align: center;
+    flex-direction: column;
+}
+
+.paragraphe{
+    text-align: center;
+}
+
+.description{
+    text-align: center;
+    padding: 20px;
+}
+
+.categorie{
+    text-align: center;
+}
+
+.changementStock{
+    text-align: center;
+    flex-direction: row;
+}
+
+.infos_produit form{
+    display:flex;
+    justify-content: center;
+}
+
+input {
+    padding:5px;
+    margin-right:10px;
+    align-self: center;
+}
+
+.quantite{
+    padding:3px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.formulaire{
+    display:flex; 
+    justify-content: center;
+}
+.changeproduit{
+    display:flex;
+    flex-direction: column;
+    align-self: center;
+    text-align: center;
+    background-color: cadetblue;
+    margin:50px;
+    width: 200px;
+    border-radius: 30px;
+}
+
+textarea{
+    resize:vertical;
+}
+
+.element{
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+}

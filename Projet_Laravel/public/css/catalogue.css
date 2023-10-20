@@ -1,0 +1,29 @@
+
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.message{
+    padding-top:10px;
+    padding-left:10px;
+}
+
+.bloc{
+    padding: 8px;
+    margin: 25px;
+    background-color: #E8EDDF;
+}
+
+.centre{
+    text-align:center;
+}
+
+.contain{
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+}
+

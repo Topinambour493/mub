@@ -1,0 +1,185 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+html,body{
+    height:100%;
+    width: 100%;
+}
+
+body{
+    display: flex; 
+    justify-content: space-between;
+    flex-direction:column;
+    background-color: #bee2be;
+    pointer-events:none;
+    overflow:clip;
+}
+
+button{
+    cursor: pointer;
+    padding:5px;    
+    color:black;
+    background-color: #F5CB5C;
+}
+
+button:hover {
+    box-shadow: 5px 2px 18px #888888;
+    font-weight:bold;
+}
+
+button:active{
+    color:white;
+}
+
+/* css pour le header*/
+header{
+    display : flex ;
+    justify-content:space-between;
+    width: 100%;
+    color:black;
+    background-color:#f5cb5c;
+    border-bottom:dashed black;
+    font-weight:bold;
+}
+
+.RGPD{
+    position: absolute;
+    border-radius: 20px;
+    border: 2px solid black;
+    display: flex; 
+    text-align:center;
+    width:20%;
+    flex-direction:column;
+    justify-content: center;
+    background-color: #f5cb5c;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding:3%;
+    pointer-events:auto;
+}
+
+.fond_opaque{
+    display:none;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+#Accept{
+    background-color: #bee2be;;
+}
+
+.gauche{
+    flex:1;
+    display : flex ;
+    padding-left: 9px;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.milieu{
+    flex:1;
+    display : flex ;
+    flex-direction: column;
+    justify-content:center;
+}
+
+
+.droite{
+    flex:1;
+    display : flex ;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-right: 9px;
+    flex-direction: column;
+    justify-content:space-between;
+}
+
+.haut{
+    display : flex ;
+    justify-content:flex-end;
+    gap: 9px;
+}
+
+.bas{
+    display : flex ;
+    justify-content:flex-end;
+}
+
+#notification{
+    display : flex ;
+    justify-content:center;
+    font-size: 1em;
+    color:red;
+}
+
+.menu{
+    display : flex ;
+    justify-content:center;
+    font-size: 1.6em;
+    color:black;
+}
+
+.auth:hover{
+    color:white;
+}
+
+.containcouronne{
+    max-width: 15px;
+    max-height: 15px;
+    object-fit: contain;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.menu:hover{
+    color:white;
+}
+
+.user_connected{
+    padding-left:5px;
+}
+
+.panier{
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+    content:url("/../images/header/panier_noir.png");
+}
+
+.panier:hover{
+    content:url("/../images/header/panier_blanc.png");
+}
+
+.containhistorique{
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+    content:url("/../images/header/historique_noir.png");
+}
+
+.containhistorique:hover{
+    content:url("/../images/header/historique_blanc.png");
+}
+
+/* CSS pour le footer */
+footer{
+    bottom: 0%;
+    background-color: #f5cb5c;
+}
+
+.reseau{
+    size: 200%;
+    display: flex;
+    justify-content: center;
+}
+

@@ -1,0 +1,98 @@
+.content{
+    width: 100%;
+    height: 100%;
+}
+
+#colonnes{
+    font-weight:bold;
+}
+
+.message{
+    padding-top:10px;
+    padding-left:10px;
+}
+
+td{
+    background-color:#CFDBD5;
+}
+
+.centre{
+    text-align:center;
+}
+
+.reseau{
+    size: 200%;
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    display: flex;
+}
+
+.paniere{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.nomduproduit{
+    text-align: center;
+}
+
+.nom:hover{
+    color:white;
+}
+
+.paragraphe{
+    text-align: center;
+}
+
+.description{
+    text-align: center;
+}
+
+.categorie{
+    text-align: center;
+}
+
+
+table, tr {
+    border: 2px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    text-align: center;
+
+    width: 90%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.validation{
+    text-align: center;
+    align-self:center;
+    background-color:#CFDBD5;
+    min-width: 15%;
+    margin-bottom: 5%;
+    padding: 5px;
+    border: 3px solid black;
+
+}
+.valid{
+    padding: 5px;
+}
+
+input{
+    width:80px;
+}
+
+.supp{
+    color: black;
+    padding:0,3,0;
+    background-color: #dc143c;
+}
+
+#total{
+    font-size: 25px;
+}

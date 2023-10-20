@@ -1,0 +1,17 @@
+.formulaire{
+    align-self: center;
+    margin: 20px;
+    text-align: center;
+    background-color: cadetblue;
+    padding:10px;
+    max-width: 200px;
+    border-radius: 30px;
+}
+
+.envoie{
+    padding:5px;
+}
+
+.alert-danger{
+    color:hsl(354, 100%, 60%);
+}
