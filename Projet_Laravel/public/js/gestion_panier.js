@@ -15,7 +15,7 @@ function vide_notif(){
 // Fonction qui permet d'acheter directement n'importe quel produit depuis le catalogue en l'ajoutant au panier
 function achatDirect(produit_id,produit_nom,produit_prix,produit_stock) {
     if (produit_stock == 0){
-        notification_flash("Il n'y a plus de stock pour ce produit");
+        alertify.error("Il n'y a plus de stock pour ce produit");
         return;
     }
     panier=getPanier();
@@ -40,7 +40,7 @@ function achatDirect(produit_id,produit_nom,produit_prix,produit_stock) {
 function achat(produit_id,produit_nom,produit_prix,produit_stock) {
     produit_quantite=parseInt(document.querySelector("#quantité").value);
     if (produit_stock==0){
-        notification_flash("Il n'y a plus de stock pour ce produit");
+        alertify.error("Il n'y a plus de stock pour ce produit");
         return;
     }
     if (produit_stock < produit_quantite ||  0 > produit_quantite || produit_quantite%1!=0 ) {
@@ -133,10 +133,10 @@ function display_panier(){
     contenu_panier=document.querySelector("#items_panier");
     getPanier().forEach(panier_produit => {
         contenu_panier.innerHTML += "<tr " + "id='tr" + panier_produit["id"]+ "' ><td>"
-        + panier_produit['nom'] + "</td><td>" 
+        + panier_produit['nom'] + "</td><td>"
         + "<input type='hidden' name='produit_id' value=" + panier_produit["id"]+ ">"
         + "<input type='hidden' name='ancienne_quantite' value=" + panier_produit["quantite"] + ">"
-        + "<input type='number' name='nouvelle_quantite' value=" + panier_produit["quantite"] + " get class='modif' />"
+        + "<input required min='1' type='number' name='nouvelle_quantite' value=" + panier_produit["quantite"] + " get class='modif' />"
         + "<button type='submit' onclick='changeQuantite(" + panier_produit["id"] + ")' class='update'>update</button>"
         + "</td><td>"
         + panier_produit['prix'] + "</td><td>"
@@ -147,7 +147,7 @@ function display_panier(){
 
 
 
-// Fonction qui permet d'afficher le nombre de produit dans le panier 
+// Fonction qui permet d'afficher le nombre de produit dans le panier
 function display_nb_produits(){
     panier=getPanier();
     nb_produits=0;
@@ -166,7 +166,7 @@ function changeQuantite(produit_id){
     nouvelle_quantite=parseInt(tableau.querySelector("input[name='nouvelle_quantite']").value);
     ancienne_quantite=parseInt(tableau.querySelector("input[name='ancienne_quantite']").value);
     if (nouvelle_quantite < 0){
-        notification_flash("Impossible de commander une quantité négative");
+        alertify.error("Impossible de commander une quantité négative");
         return ;
     }
     if (nouvelle_quantite==0){
@@ -175,7 +175,7 @@ function changeQuantite(produit_id){
     }
     stock=parseInt(get_stock(produit_id)) + ancienne_quantite;
     if (stock < nouvelle_quantite){
-        notification_flash("Impossible de dépasser le stock disponible qui est de " + stock + " pour ce produit");
+        alertify.error("Impossible de dépasser le stock disponible qui est de " + stock + " pour ce produit");
         return;
     }
     panier=getPanier();
@@ -209,7 +209,7 @@ function display_total(){
 function videPanier(){
     panier=getPanier();;
     if (Object.keys(panier).length == 0 ){
-        notification_flash("Votre panier est vide");
+        alertify.error("Votre panier est vide");
     }
     panier.forEach(panier_produit => {
         remetStock(panier_produit);
@@ -224,7 +224,7 @@ function videPanier(){
 function videPanier_valide(){
     panier=getPanier();;
     if (Object.keys(panier).length == 0 ){
-        notification_flash("ton panier est vide");
+        alertify.error("votre panier est vide");
     }
     panier.forEach(panier_produit => {
         document.querySelector("#tr"+panier_produit['id']).remove();

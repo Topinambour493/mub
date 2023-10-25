@@ -22,15 +22,15 @@
 
             <h2>Ajout Produit</h2>
             <label for="nom">Nom produit:</label>
-            <input type="text" id="nom" name="nom"><br/><br/>
+            <input type="text" id="nom" name="nom" required><br/><br/>
             <label for="prix">Prix:</label>
-            <input type="number" id="prix" name="prix" min="0"><br/><br/>
+            <input type="number" id="prix" name="prix" min="0" required><br/><br/>
             <label for="description">Description:</label>
-            <textarea rows="5" id="description" name="description"></textarea><br/><br/>
+            <textarea rows="5" id="description" name="description" required></textarea><br/><br/>
             <label for="image">Image produit:</label>
-            <input type="file" name="image" accept="image/*"><br/><br/>
+            <input type="file" name="image" accept="image/*" required><br/><br/>
             <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" min="0"><br/><br/>
+            <input type="number" id="stock" name="stock" min="0" required><br/><br/>
             <button type="submit" class="envoie">valider</button>
         </form>
     </div>

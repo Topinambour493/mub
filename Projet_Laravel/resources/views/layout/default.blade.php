@@ -74,7 +74,8 @@
         <script type="text/javascript" src="/js/gestion_panier.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-        <script>alertify.error("yoi")</script>
+        <script>alertify.set('notifier','position', 'top-center');
+        </script>
         <script>display_nb_produits()</script>
         @yield('script')
     </body>
