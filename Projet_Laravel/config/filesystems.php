@@ -41,7 +41,7 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-        'disk_de_merde' => [ 'driver' => 'local', 'root' => public_path()],
+        'disk_products' => [ 'driver' => 'local', 'root' => public_path()],
 
         's3' => [
             'driver' => 's3',

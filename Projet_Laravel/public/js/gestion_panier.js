@@ -134,10 +134,12 @@ function display_panier(){
     getPanier().forEach(panier_produit => {
         contenu_panier.innerHTML += "<tr " + "id='tr" + panier_produit["id"]+ "' ><td>"
         + panier_produit['nom'] + "</td><td>"
+        + "<form>"
         + "<input type='hidden' name='produit_id' value=" + panier_produit["id"]+ ">"
         + "<input type='hidden' name='ancienne_quantite' value=" + panier_produit["quantite"] + ">"
-        + "<input required min='1' type='number' name='nouvelle_quantite' value=" + panier_produit["quantite"] + " get class='modif' />"
+        + "<input required min='0' type='number' name='nouvelle_quantite' value=" + panier_produit["quantite"] + " get class='modif' />"
         + "<button type='submit' onclick='changeQuantite(" + panier_produit["id"] + ")' class='update'>update</button>"
+        + "</form>"
         + "</td><td>"
         + panier_produit['prix'] + "</td><td>"
         + "<button onclick='supprimeProduit(" + panier_produit["id"] + ")' class='supp'>x</button></td></tr>"
@@ -166,7 +168,6 @@ function changeQuantite(produit_id){
     nouvelle_quantite=parseInt(tableau.querySelector("input[name='nouvelle_quantite']").value);
     ancienne_quantite=parseInt(tableau.querySelector("input[name='ancienne_quantite']").value);
     if (nouvelle_quantite < 0){
-        alertify.error("Impossible de commander une quantité négative");
         return ;
     }
     if (nouvelle_quantite==0){

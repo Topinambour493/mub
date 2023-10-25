@@ -15,3 +15,13 @@ textarea{
 .envoie{
     padding:5px;
 }
+
+.image{
+    text-align: center;
+}
+
+.picto-contain{
+    max-width: 140px;
+    max-height: 140px;
+    object-fit: contain;
+}

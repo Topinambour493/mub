@@ -19,7 +19,7 @@
         <div class="container">
             @foreach ($produits as $produit)
                 <div class="bloc">
-                    <div class="centre"><a href="{{ route('fiche_produit', [$produit->id]) }}) }}"><img src="/disk_de_merde/{{$produit->image}}" alt="{{$produit->nom}}" class="contain"></a></br></div>
+                    <div class="centre"><a href="{{ route('fiche_produit', [$produit->id]) }}) }}"><img src="/disk_products/{{$produit->image}}" alt="{{$produit->nom}}" class="contain"></a></br></div>
                     <div class="centre">{{$produit->nom}}</br></div>
                     <div class="centre">
                         <a href="{{ route('fiche_produit', [$produit->id]) }}"><button>voir +</button></a>

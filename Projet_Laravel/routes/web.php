@@ -58,6 +58,8 @@ Route::get('/deconnexion',[UtilisateurController::class,'deconnexion'])->name('d
 
 Route::post('/ajoutProduit',[ProduitController::class,'ajoutProduit'])->name('ajoutProduit')->middleware('admin');
 
+Route::get('/modification_fiche_produit/{id}', [ProduitController::class, 'modificationFicheProduit'])->name("modification_fiche_produit")->middleware('admin');
+
 Route::post('/changementProduit',[ProduitController::class,'changementProduit'])->name('changementProduit')->middleware('admin');
 
 Route::get('/adminNouveauProduit',[ProduitController::class,'adminNouveauProduit'])->name('adminNouveauProduit')->middleware('admin');
