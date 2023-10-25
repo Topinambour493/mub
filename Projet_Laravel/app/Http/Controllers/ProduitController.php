@@ -35,7 +35,6 @@ class ProduitController extends Controller
             'nom' => 'required|max:50',
             'prix' => 'required',
             'description' => 'required',
-            'catégorie' => 'required|max:30',
             'image' => 'required',
             'stock' => 'required'
         ]);
@@ -58,7 +57,6 @@ class ProduitController extends Controller
             'nom' => 'required|max:50',
             'prix' => 'required',
             'description' => 'required',
-            'catégorie' => 'required|max:30',
             'stock' => 'required'
         ]);
 
@@ -66,9 +64,8 @@ class ProduitController extends Controller
         $produit->nom=$validated['nom'];
         $produit->prix=$validated['prix'];
         $produit->description=$validated['description'];
-        $produit->catégorie=$validated['catégorie'];
         $produit->stock=$validated['stock'];
-        $produit->prix=$validated['prix'];       
+        $produit->prix=$validated['prix'];
         $produit->save();
 
         return view('fiche_produit',[

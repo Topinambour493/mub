@@ -9,16 +9,15 @@
 @endsection
 
 @section('content')
-    <h1>   
+    <h1>
         <div class="nomduproduit">{{$produit->nom}}</div><br>
         <div class="infos_produit">
             <div class="image">
                 <img src="/disk_de_merde/{{$produit->image}}" alt="{{$produit->nom}}" class="contain">
-            </div>    
-            <div class="paragraphe">     
+            </div>
+            <div class="paragraphe">
                 <div class= "description">Description du produit: <br>{{$produit->description}}</div>
                 <div class=prix>Prix : {{$produit->prix}}€</div>
-                <div class="categorie">Categorie:  {{$produit->catégorie}}</div>
                 @if ($errors->any())
                     <div class="alert-danger">
                         @foreach ($errors->all() as $error)
@@ -63,10 +62,6 @@
                         <div class="element">
                             <label for="description">Description:</label>
                             <textarea rows="5" id="description" name="description">{{$produit->description}}</textarea>
-                        </div>
-                        <div class="element">
-                            <label for="catégorie">Catégorie:</label>
-                            <input type="text" id="catégorie" name="catégorie" value="{{$produit->catégorie}}">
                         </div>
                         <div class="element">
                             <label for="stock">Stock:</label>

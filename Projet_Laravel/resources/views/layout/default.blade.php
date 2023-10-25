@@ -3,6 +3,8 @@
     <head>
         <title>@yield('title')</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
         <link rel="stylesheet" href="/css/header.css"/>
         @yield('css')
         <meta charset="UTF-8">
@@ -45,10 +47,8 @@
                             <a href="{{ route('historique') }}"><img alt="historique" class="containhistorique"><a>
                         @endif
                     @endif
-                    <a href="{{ route('panier') }}"><img alt="panier" class="panier"></a> 
-                    @if (Auth::check())
-                        <p id="nb_produits">0</p>
-                    @endif
+                    <a href="{{ route('panier') }}"><img alt="panier" class="panier"></a>
+                    <p id="nb_produits">0</p>
                 </div>
             </div>
         </header>
@@ -73,6 +73,8 @@
         <script type="text/javascript" src="/js/RGPD.js"></script>
         <script type="text/javascript" src="/js/gestion_panier.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script>alertify.error("yoi")</script>
         <script>display_nb_produits()</script>
         @yield('script')
     </body>

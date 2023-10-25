@@ -27,8 +27,6 @@
             <input type="number" id="prix" name="prix" min="0"><br/><br/>
             <label for="description">Description:</label>
             <textarea rows="5" id="description" name="description"></textarea><br/><br/>
-            <label for="catégorie">Catégorie:</label>
-            <input type="text" id="catégorie" name="catégorie"><br/><br/>
             <label for="image">Image produit:</label>
             <input type="file" name="image" accept="image/*"><br/><br/>
             <label for="stock">Stock:</label>
