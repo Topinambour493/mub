@@ -24,7 +24,7 @@ class PanierController extends Controller
         return  $NBcom;
     }
 
-    // Fonction qui permet de valider le panier 
+    // Fonction qui permet de valider le panier
     public function validerlepanier(Request $request){
         $paniers=Panier::select('*')
         ->where('user_id',Auth::user()->id)
@@ -44,6 +44,9 @@ class PanierController extends Controller
     // Fonction qui ajoute au panier le produit avec la bonne valeur  depuis la fiche du produit
     public function ajoutePanier(Request $request){
         $panier_produit = json_decode($request['produit']);
+        if ($panier_produit->{'quantite'} < 1){
+            return response()->json(array('message'=>'la quantité ne peut pas être inférieur à 1'), 400);
+        }
         $panier=[
             'commande'=>Auth::user()->commande_en_cours,
             'user_id'=>Auth::user()->id,
@@ -58,7 +61,7 @@ class PanierController extends Controller
     }
 
 
-    // Fonction qui enleve le stock avec l'aide de l'ajax 
+    // Fonction qui enleve le stock avec l'aide de l'ajax
     public function enleveStock(Request $request){
         $panier_produit = json_decode($request['produit']);
         $produit=Produit::find($panier_produit->{'id'});
@@ -84,11 +87,11 @@ class PanierController extends Controller
     public function biggestpurchase()
     {
         $big=DB::table('paniers')
-        ->orderBy('quantite','DESC')        
+        ->orderBy('quantite','DESC')
         ->first();
         return response()->json($big);
-        
+
     }
-    
+
 }
 

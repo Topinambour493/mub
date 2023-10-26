@@ -240,6 +240,7 @@ function videPanier_valide(){
 function validePanier(){
     var _token= $('meta[name="_token"]').attr('content')
     panier=getPanier();
+    let errore = 0;
     panier.forEach(panier_produit => {
         produit=JSON.stringify(panier_produit);
         $.ajax({
@@ -248,22 +249,29 @@ function validePanier(){
                 produit,
                 _token
             },
-            method: 'POST'
+            method: 'POST',
+            success: function (){
+                $.ajax({
+                    url: '/validerPanier',
+                    data: {
+                        _token
+                    },
+                    method: 'POST',
+                    success: function (data) {
+                        if (data == "catalogue") {
+                            window.location.href = "/catalogue";
+                        }
+                    }
+                });
+                videPanier_valide();
+            },
+            error: function (error) {
+                console.log(error["responseJSON"]);
+                errore = 1;
+                alertify.error(error["responseJSON"].message);
+            }
         });
     });
-    $.ajax({
-        url:'/validerPanier',
-        data: {
-            _token
-        },
-        method: 'POST',
-        success: function(data){
-            if (data=="catalogue"){
-                window.location.href="/catalogue";
-            }
-        }
-    });
-    videPanier_valide();
 };
 
 //fonction qui permet de récuperer le stock d'un produit depuis la database SQL grace à la méthode AJAX

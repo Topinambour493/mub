@@ -22,11 +22,17 @@
                     <div class="centre"><a href="{{ route('fiche_produit', [$produit->id]) }}) }}"><img src="/disk_products/{{$produit->image}}" alt="{{$produit->nom}}" class="contain"></a></br></div>
                     <div class="centre">{{$produit->nom}}</br></div>
                     <div class="centre">
-                        <a href="{{ route('fiche_produit', [$produit->id]) }}"><button>voir +</button></a>
+                        <a href="{{ route('fiche_produit', [$produit->id]) }}"><button>Détail</button></a>
                         <form onsubmit="return false">
                             @csrf
                             <button @if (Auth::check()) onclick="achatDirect({{ $produit->id}},'{{ $produit->nom}}',{{ $produit->prix}},{{ $produit->stock}})" @else onclick="viewLogin()" @endif >Achat Direct</button>
                         </form>
+                        <br/>
+                        @if (Auth::check())
+                            @if(Auth::user()->admin == 1)
+                                <a href="{{ route("modification_fiche_produit", [$produit->id]) }}"><button> Modifier la fiche produit</button></a>
+                            @endif
+                        @endif
                     </div>
                 </div>
             @endforeach

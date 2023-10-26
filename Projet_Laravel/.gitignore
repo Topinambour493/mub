@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
-/public/disk_de_merde/*
+/public/disk_de_merde/
 /storage/*.key
 /vendor
 .env

@@ -4,7 +4,6 @@ use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ResetController;
 use App\Http\Controllers\HistoriqueController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,8 +42,6 @@ Route::get('/catalogue',[ProduitController::class,'catalogue'])->name('catalogue
 Route::get('/fiche_produit/{id}',[ProduitController::class,'fiche_produit'])->name('fiche_produit');
 
 Route::get('/inscription',[UtilisateurController::class,'inscription'])->name('inscription')->middleware('guest');
-
-Route::get('/reset',[ResetController::class,'reset'])->name('reset')->middleware('guest');
 
 Route::post('/inscrit',[UtilisateurController::class,'inscrit'])->name('inscrit')->middleware('guest');
 

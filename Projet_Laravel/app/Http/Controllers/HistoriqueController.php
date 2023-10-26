@@ -17,6 +17,7 @@ class HistoriqueController extends Controller
                             ->where('user_id',Auth::user()->id)
                             ->where('commande',$i)->get();
         }
+        $commandes = array_reverse($commandes);
         foreach ($commandes as $panierItems)
         {
             $total=0;

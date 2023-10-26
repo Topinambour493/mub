@@ -27,7 +27,6 @@
             <label for="password">Mot de passe:</label>
             <input type="password" id="password" name="password"><br/><br/>
             <button type="submit">connexion</button><br><br>
-            <a href="{{ route('reset') }}">Reinitialiser votre mot de passe</a>
         </form>
     </div>
 @endsection
