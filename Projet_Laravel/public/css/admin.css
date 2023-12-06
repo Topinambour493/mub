@@ -1,4 +1,4 @@
-.formulaire{
+.form{
     align-self: center;
     margin: 20px;
     text-align: center;
@@ -12,7 +12,7 @@ textarea{
     resize:vertical;
 }
 
-.envoie{
+.send{
     padding:5px;
 }
 

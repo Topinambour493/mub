@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="mub_o2switch" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="mub_o2switch">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/mub" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

@@ -8,6 +8,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Projet_Laravel/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/Projet_Laravel/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Projet_Laravel/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Projet_Laravel/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/Projet_Laravel/vendor/asm89/stack-cors" />
       <excludeFolder url="file://$MODULE_DIR$/Projet_Laravel/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/Projet_Laravel/vendor/composer" />
@@ -116,6 +119,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Projet_Laravel/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/Projet_Laravel/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/Projet_Laravel/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/Projet_Laravel/vendor/carbonphp/carbon-doctrine-types" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

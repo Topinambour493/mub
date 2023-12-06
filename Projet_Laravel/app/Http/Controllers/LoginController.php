@@ -26,7 +26,7 @@ class LoginController extends Controller
             $user=Auth::user();
 
             function console_log($output, $with_script_tags = true) {
-                $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+                $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
             ');';
                 if ($with_script_tags) {
                     $js_code = '<script>' . $js_code . '</script>';
@@ -34,7 +34,7 @@ class LoginController extends Controller
                 echo $js_code;
             }
 
-            return redirect('catalogue');
+            return redirect('catalog');
         }
 
         return back()->withErrors([

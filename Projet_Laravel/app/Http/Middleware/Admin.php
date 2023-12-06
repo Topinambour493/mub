@@ -22,6 +22,6 @@ class Admin
                 return $next($request);
             }
         }
-        return redirect('catalogue');
+        return redirect('catalog');
     }
 }

@@ -13,7 +13,7 @@
     <body>
         <header>
             <div class="gauche">
-                <div class="MUB"><a href="{{ route('catalogue') }}"><img src="/images/header/logo.png" alt="MUB"></a></div>
+                <div class="MUB"><a href="{{ route('catalog') }}"><img src="/images/header/logo.png" alt="MUB"></a></div>
             </div>
             <div class="milieu">
                 @if (Auth::check())
@@ -22,7 +22,7 @@
                         <a href="{{ route('adminNouveauProduit') }}" class="menu">Ajout Produit</a>
                     @endif
                 @endif
-                <a href="{{ route('catalogue') }}" class="menu">Catalogue</a>
+                <a href="{{ route('catalog') }}" class="menu">Catalogue</a>
                 <div id="notification"></div>
             </div>
             <div class="droite">
@@ -47,7 +47,7 @@
                             <a href="{{ route('historique') }}"><img alt="historique" class="containhistorique"><a>
                         @endif
                     @endif
-                    <a href="{{ route('panier') }}"><img alt="panier" class="panier"></a>
+                    <a href="{{ route('shopBasket') }}"><img alt="panier" class="panier"></a>
                     <p id="nb_produits">0</p>
                 </div>
             </div>

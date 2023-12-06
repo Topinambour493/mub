@@ -5,11 +5,11 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/css/authentification.css">    
+    <link rel="stylesheet" href="/css/authentification.css">
 @endsection
 
 @section('content')
-    <div class="formulaire">
+    <div class="form">
         @if ($errors->any())
             <div class="alert-danger">
                 @foreach ($errors->all() as $error)
@@ -22,9 +22,9 @@
 
             <h2>Inscription</h2>
             <label for="prenom">Prénom:</label>
-            <input type="text" id="prenom" name="name"><br/><br/>  
+            <input type="text" id="prenom" name="name"><br/><br/>
             <label for="nom">Nom:</label>
-            <input type="text" id="nom" name="lastname"><br/><br/>  
+            <input type="text" id="nom" name="lastname"><br/><br/>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email"><br/><br/>
             <label for="password">Mot de passe:</label>

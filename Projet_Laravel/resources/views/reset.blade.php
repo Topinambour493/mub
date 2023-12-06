@@ -9,12 +9,12 @@
 @endsection
 
 @section('content')
-    <div class="formulaire">
+    <div class="form">
         <form action="{{route ('connexion')}}" method="GET">
             <h2>Réinitialisation mot de passe</h2>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email"><br><br/>
-            <input type="submit" value="m'envoyer un mail" class="envoie" >
+            <input type="submit" value="m'envoyer un mail" class="send" >
         </form>
     </div>
 @endsection

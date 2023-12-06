@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->boolean('admin');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('commande_en_cours');
+            $table->integer('current_order');
             $table->rememberToken();
             $table->timestamps();
         });

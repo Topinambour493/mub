@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <div class="formulaire">
+    <div class="form">
         @if ($errors->any())
             <div class="alert-danger">
                 @foreach ($errors->all() as $error)

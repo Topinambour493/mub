@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="formulaire">
+    <div class="form">
         @if ($errors->any())
             <div class="alert-danger">
                 @foreach ($errors->all() as $error)
@@ -31,7 +31,7 @@
             <input type="file" name="image" accept="image/*" required><br/><br/>
             <label for="stock">Stock:</label>
             <input type="number" id="stock" name="stock" min="0" required><br/><br/>
-            <button type="submit" class="envoie">valider</button>
+            <button type="submit" class="send">valider</button>
         </form>
     </div>
 @endsection

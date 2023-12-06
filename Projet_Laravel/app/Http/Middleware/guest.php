@@ -18,7 +18,7 @@ class guest
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()){
-                return redirect('catalogue');
+                return redirect('catalog');
         }
         return $next($request);
     }

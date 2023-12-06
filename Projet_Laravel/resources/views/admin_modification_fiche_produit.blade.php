@@ -9,7 +9,7 @@ MUB Admin
 @endsection
 
 @section('content')
-<div class="formulaire">
+<div class="form">
     @if ($errors->any())
     <div class="alert-danger">
         @foreach ($errors->all() as $error)
@@ -45,7 +45,7 @@ MUB Admin
             <label for="stock">Stock:</label>
             <input type="number" id="stock" name="stock" value="{{$produit->stock}}" min="0" required>
         </div>
-        <button class="envoie" type="submit">valider</button>
+        <button class="send" type="submit">valider</button>
     </form>
 </div>
 @endsection

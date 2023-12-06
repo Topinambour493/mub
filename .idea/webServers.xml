@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5374678f-5515-4eb9-b259-20721a384e0a" name="mub_o2switch">
+        <fileTransfer rootFolder="/home/sc1igtn3560" accessType="SFTP" host="109.234.164.209" port="22" sshConfigId="e0622f1b-a187-4aaf-ba3b-d2f6a355d411" sshConfig="o2switch">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

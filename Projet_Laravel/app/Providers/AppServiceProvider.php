@@ -57,23 +57,23 @@ class AppServiceProvider extends ServiceProvider
     {
         ViewFacade::composer('layout.default', function(View $view) {
             if (auth()->check()) {
-                $item_count = DB::table('paniers')
+                $item_count = DB::table('shop_baskets')
                 ->where('user_id', auth()->user()->id)
-                ->where('commande',auth()->user()->commande_en_cours)
-                ->sum('quantite');
-                
+                ->where('order',auth()->user()->curent_order)
+                ->sum('quantity');
+
             } else {
                 $item_count = 0;
             }
             $view->with('item_count',$item_count);
         });
 
-        ViewFacade::composer('panier', function(View $view) {
-            $items = DB::table('paniers')->where('user_id', auth()->user()->id)->get('produit_id');
+        ViewFacade::composer('shop_basket', function(View $view) {
+            $items = DB::table('shopBaskets')->where('user_id', auth()->user()->id)->get('product_id');
             // dd($items);
             $totalE = 0;
             foreach ($items as $item){
-                $totalE += DB::table('produits')->where('id', $item->produit_id)->first('prix')->prix;
+                $totalE += DB::table('products')->where('id', $item->product_id)->first('price')->price;
             }
             //  dd($total);
             $view->with('totalE',$totalE);

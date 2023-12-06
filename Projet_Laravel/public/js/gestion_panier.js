@@ -33,7 +33,7 @@ function achatDirect(produit_id,produit_nom,produit_prix,produit_stock) {
     localStorage.setItem('panier',JSON.stringify(panier));
     enleveStock(produit);
     display_nb_produits();
-    window.location.href="/panier";
+    window.location.href="/shopBasket";
 }
 
 // Fonction qui permet de tester de de verifier si il y a encore du stock
@@ -61,7 +61,7 @@ function achat(produit_id,produit_nom,produit_prix,produit_stock) {
     localStorage.setItem('panier',JSON.stringify(panier));
     enleveStock(produit);
     display_nb_produits();
-    window.location.href="/catalogue";
+    window.location.href="/catalog";
 }
 
 
@@ -244,7 +244,7 @@ function validePanier(){
     panier.forEach(panier_produit => {
         produit=JSON.stringify(panier_produit);
         $.ajax({
-            url:'/ajoutePanier',
+            url:'/addShopBasket',
             data: {
                 produit,
                 _token
@@ -258,8 +258,8 @@ function validePanier(){
                     },
                     method: 'POST',
                     success: function (data) {
-                        if (data == "catalogue") {
-                            window.location.href = "/catalogue";
+                        if (data == "catalog") {
+                            window.location.href = "/catalog";
                         }
                     }
                 });

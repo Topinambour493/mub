@@ -23,7 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'admin',
-        'commande_en_cours'
+        'current_order',
     ];
 
     /**
@@ -44,8 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function paniers()
+    public function shopBaskets()
     {
-        return $this->has_Many(Panier::class);
+        return $this->has_Many(shopBasket::class);
     }
 }

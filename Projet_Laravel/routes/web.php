@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\UtilisateurController;
-use App\Http\Controllers\PanierController;
-use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShopBasketController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\HistoriqueController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,60 +21,60 @@ use Illuminate\Support\Facades\Route;
 
 /*Facon tres simple
 Route::get('/prod', function () {
-    return view('produit');
+    return view('product');
 });
 */
 
 /*Facon controller
-Route::get('/',[UserController::class,'catalogue']);
+Route::get('/',[UserController::class,'catalog']);
 */
 
 /*Facon ressource
 Route::resource('user', UserController::class);
 */
 
-Route::get('/',[ProduitController::class,'catalogue']);
+Route::get('/',[ProductController::class, 'catalog']);
 
-Route::get('/panier',[PanierController::class,'panier'])->name('panier')->middleware('connected');
+Route::get('/shopBasket',[ShopBasketController::class, 'shopBasket'])->name('shopBasket')->middleware('connected');
 
-Route::get('/catalogue',[ProduitController::class,'catalogue'])->name('catalogue');
+Route::get('/catalog',[ProductController::class, 'catalog'])->name('catalog');
 
-Route::get('/fiche_produit/{id}',[ProduitController::class,'fiche_produit'])->name('fiche_produit');
+Route::get('/productSheet/{id}',[ProductController::class, 'productSheet'])->name('productSheet');
 
-Route::get('/inscription',[UtilisateurController::class,'inscription'])->name('inscription')->middleware('guest');
+Route::get('/inscription',[UserController::class, 'register'])->name('inscription')->middleware('guest');
 
-Route::post('/inscrit',[UtilisateurController::class,'inscrit'])->name('inscrit')->middleware('guest');
+Route::post('/inscrit',[UserController::class, 'registered'])->name('inscrit')->middleware('guest');
 
-Route::get('/nb_users',[UtilisateurController::class,'get_nbUsers'])->middleware('admin');
+Route::get('/nb_users',[UserController::class, 'getNumberUser'])->middleware('admin');
 
 Route::post('/authentification',[LoginController::class,'authentification'])->name('authentification');
 
-Route::get('/connexion',[UtilisateurController::class,'connexion'])->name('connexion')->middleware('guest');
+Route::get('/connexion',[UserController::class, 'login'])->name('connexion')->middleware('guest');
 
-Route::get('/deconnexion',[UtilisateurController::class,'deconnexion'])->name('deconnexion')->middleware('connected');
+Route::get('/deconnexion',[UserController::class, 'disconnect'])->name('deconnexion')->middleware('connected');
 
-Route::post('/ajoutProduit',[ProduitController::class,'ajoutProduit'])->name('ajoutProduit')->middleware('admin');
+Route::post('/ajoutproduct',[ProductController::class, 'addProduct'])->name('ajoutproduct')->middleware('admin');
 
-Route::get('/modification_fiche_produit/{id}', [ProduitController::class, 'modificationFicheProduit'])->name("modification_fiche_produit")->middleware('admin');
+Route::get('/modification_fiche_product/{id}', [ProductController::class, 'changeProductSheet'])->name("modification_fiche_product")->middleware('admin');
 
-Route::post('/changementProduit',[ProduitController::class,'changementProduit'])->name('changementProduit')->middleware('admin');
+Route::post('/changementproduct',[ProductController::class, 'changeProduct'])->name('changementproduct')->middleware('admin');
 
-Route::get('/adminNouveauProduit',[ProduitController::class,'adminNouveauProduit'])->name('adminNouveauProduit')->middleware('admin');
+Route::get('/adminNouveauproduct',[ProductController::class,'adminNouveauproduct'])->name('adminNouveauproduct')->middleware('admin');
 
-Route::get('/historiqueCommandes',[HistoriqueController::class,'historiqueCommandes'])->name('historique')->middleware('connected');
+Route::get('/historiqueCommandes',[HistoryController::class, 'orderHistory'])->name('historique')->middleware('connected');
 
 Route::get('/stats', function () {return view('stats');})->name('stats')->middleware('admin');
 
-Route::get('/biggestpurchase', [PanierController::class, 'biggestpurchase'])->middleware('admin');
+Route::get('/biggestpurchase', [ShopBasketController::class, 'biggestPurchase'])->middleware('admin');
 
-Route::get('/nb_commandes', [PanierController::class, 'get_nbCommandes'])->middleware('admin');
+Route::get('/nb_commandes', [ShopBasketController::class, 'getNumberOrder'])->middleware('admin');
 
-Route::post('/ajoutePanier',[PanierController::class, 'ajoutePanier'])->middleware('connected');
+Route::post('/addShopBasket',[ShopBasketController::class, 'addShopBasket'])->middleware('connected');
 
-Route::post('/validerPanier', [PanierController::class, 'validerlepanier'])->middleware('connected');
+Route::post('/validerShopBasket', [ShopBasketController::class, 'validateShopBasket'])->middleware('connected');
 
-Route::post('/enleveStock', [PanierController::class, 'enleveStock'])->middleware('connected');
+Route::post('/enleveStock', [ShopBasketController::class, 'removeStock'])->middleware('connected');
 
-Route::post('/remetStock', [PanierController::class, 'remetStock'])->middleware('connected');
+Route::post('/remetStock', [ShopBasketController::class, 'restock'])->middleware('connected');
 
-Route::post('/getStock', [PanierController::class, 'getStock'])->middleware('connected');
+Route::post('/getStock', [ShopBasketController::class, 'getStock'])->middleware('connected');
