@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/css/historique.css">
+    <link rel="stylesheet" href="/css/history.css">
 @endsection
 
 @section('content')
@@ -23,7 +23,7 @@
                     @foreach ($shopBasketItems as $item)
                         <tr>
                             <td class="nomprod">
-                                <a href="{{ route('fiche_product', [$item->product_id]) }}"><p
+                                <a href="{{ route('productSheet', [$item->product_id]) }}"><p
                                         class="nom">{{ $item->name_product }}</p></a>
                             </td>
                             <td>{{ $item->quantity }}</td>

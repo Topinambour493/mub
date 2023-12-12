@@ -48,10 +48,6 @@ class AppServiceProvider extends ServiceProvider
     //  *
     //  * @return void
     //  */
-    public function register()
-    {
-        //
-    }
 
     public function boot()
     {
@@ -69,7 +65,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         ViewFacade::composer('shop_basket', function(View $view) {
-            $items = DB::table('shopBaskets')->where('user_id', auth()->user()->id)->get('product_id');
+            $items = DB::table('shop_baskets')->where('user_id', auth()->user()->id)->get('product_id');
             // dd($items);
             $totalE = 0;
             foreach ($items as $item){

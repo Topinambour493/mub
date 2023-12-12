@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\shopBasket;
+use App\Models\ShopBasket;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +13,9 @@ class HistoryController extends Controller
     {
         $orders=array();
         for ($i = 1; $i < Auth::user()->current_order ; $i++){
-            $orders[$i] = shopBasket::select('*')
+            $orders[$i] = ShopBasket::select('*')
                             ->where('user_id',Auth::user()->id)
-                            ->where('commande',$i)->get();
+                            ->where('order',$i)->get();
         }
         $orders = array_reverse($orders);
         foreach ($orders as $order)
@@ -31,7 +31,7 @@ class HistoryController extends Controller
 
         }
 
-        return view('historique',compact('orders'));
+        return view('history',compact('orders'));
     }
 
 }

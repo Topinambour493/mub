@@ -1,19 +1,19 @@
 
 // Fonction qui nous permet d'avoir le nombre de commandes totales faites sur le site
-async function get_nb_commandes(){
-    await fetch('/nb_commandes')
+async function get_nb_orders(){
+    await fetch('/getNumberOrder')
     .then(response => response.text())
     .then((result) => {
         document.querySelector("#nb_commandes").innerHTML="Nombres de commandes passées: "+result
     })
 }
 
-// Requete Ajax pour pouvoir trouver la plus grosse commande 
-async function get_biggestpurchase(){
-    await fetch('/biggestpurchase')
+// Requete Ajax pour pouvoir trouver la plus grosse commande
+async function get_biggestPurchase(){
+    await fetch('/biggestPurchase')
     .then(response => response.text())
     .then((result) => {
-        document.querySelector("#biggestpurchase").innerHTML="La plus grosse commande est de "+JSON.parse(result).quantite+" objet achetés"
+        document.querySelector("#biggestpurchase").innerHTML="La plus grosse commande est de "+JSON.parse(result).quantity+" objet achetés"
     })
 }
 
@@ -30,9 +30,9 @@ async function get_nb_users(){
 
 // Fonction refresh
 function refresh(){
-    get_nb_commandes()
+    get_nb_orders()
     get_nb_users()
-    get_biggestpurchase()
+    get_biggestPurchase()
 }
 
 

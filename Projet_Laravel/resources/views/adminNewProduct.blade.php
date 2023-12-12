@@ -17,14 +17,14 @@
                 @endforeach
             </div>
         @endif
-        <form action="{{ route('ajoutProduit') }}" method=POST enctype="multipart/form-data">
+        <form action="{{ route('addProduct') }}" method=POST enctype="multipart/form-data">
             @csrf
 
             <h2>Ajout Produit</h2>
-            <label for="nom">Nom produit:</label>
-            <input type="text" id="nom" name="nom" required><br/><br/>
-            <label for="prix">Prix:</label>
-            <input type="number" id="prix" name="prix" min="0" required><br/><br/>
+            <label for="name">Nom produit:</label>
+            <input type="text" id="name" name="name" required><br/><br/>
+            <label for="price">Prix:</label>
+            <input type="number" id="price" name="price" min="0" required><br/><br/>
             <label for="description">Description:</label>
             <textarea rows="5" id="description" name="description" required></textarea><br/><br/>
             <label for="image">Image produit:</label>

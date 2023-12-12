@@ -37,7 +37,7 @@
                 <div class="nb-exemplaire">Il ne reste que {{$product->stock}} exemplaires!</div>
                 @if (Auth::check())
                     @if(Auth::user()->admin == 1)
-                        <a href="{{ route("modification_fiche_product", [$product->id]) }}"><button> Modifier la fiche produit</button></a>
+                        <a href="{{ route("modificationProductSheet", [$product->id]) }}"><button> Modifier la fiche produit</button></a>
                     @endif
                 @endif
             </div>

@@ -28,14 +28,14 @@ class ProductController extends Controller
     public function adminNewProduct()
 
     {
-        return view('admin_ajout_product');
+        return view('adminNewProduct');
     }
 
     public function addProduct(Request $request)
     {
         $validated = $request->validate([
-            'nom' => 'required|max:50',
-            'prix' => 'required',
+            'name' => 'required|max:50',
+            'price' => 'required',
             'description' => 'required',
             'image' => 'required',
             'stock' => 'required'
@@ -56,17 +56,16 @@ class ProductController extends Controller
     public function changeProduct(Request $request)
     {
         $validated = $request->validate([
-            'nom' => 'required|max:50',
-            'prix' => 'required',
+            'name' => 'required|max:50',
+            'price' => 'required',
             'description' => 'required',
             'stock' => 'required'
         ]);
         $product=Product::find($request['product_id']);
-        $product->nom=$validated['nom'];
-        $product->prix=$validated['prix'];
+        $product->name=$validated['name'];
         $product->description=$validated['description'];
         $product->stock=$validated['stock'];
-        $product->prix=$validated['prix'];
+        $product->price=$validated['price'];
         if ($request['image']){
             $image_path = public_path('disk_products/'.$product->image);
             if(file_exists($image_path)){
@@ -82,14 +81,14 @@ class ProductController extends Controller
         }
         $product->save();
 
-        return view('fiche_product',[
+        return view('productSheet',[
             'product' => Product::find($request['product_id'])
         ]);
     }
 
 
-    public function changeProductSheet($id){
-        return view('admin_modification_fiche_product',[
+    public function modificationProductSheet ($id){
+        return view('modificationProductSheet',[
             'product' => Product::find($id)
         ]);
     }

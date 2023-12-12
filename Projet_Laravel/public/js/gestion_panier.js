@@ -1,66 +1,56 @@
-
-
-// Cette fonction va nous permettre d'afficher un petit message flash pour vous prevenir du la presence ou non de produit dans votre panier
-function notification_flash(texte){
-    document.querySelector("#notification").innerHTML=texte;
-    setTimeout(vide_notif,3000);
-}
-
-
-
 function vide_notif(){
     document.querySelector("#notification").innerHTML='';
 }
 
 // Fonction qui permet d'acheter directement n'importe quel produit depuis le catalogue en l'ajoutant au panier
-function achatDirect(produit_id,produit_nom,produit_prix,produit_stock) {
-    if (produit_stock == 0){
+function achatDirect(product_id,product_nom,product_prix,product_stock) {
+    if (product_stock == 0){
         alertify.error("Il n'y a plus de stock pour ce produit");
         return;
     }
     panier=getPanier();
-    produit={id:produit_id,nom:produit_nom,prix:produit_prix,quantite:1};
-    produitDansPanier=0;
-    panier.forEach(panier_produit => {
-        if (panier_produit['id'] == produit_id){
-            panier_produit['quantite']+=1;
-            produitDansPanier=1;
+    product={id:product_id,nom:product_nom,prix:product_prix,quantity:1};
+    productDansPanier=0;
+    panier.forEach(panier_product => {
+        if (panier_product['id'] == product_id){
+            panier_product['quantity']+=1;
+            productDansPanier=1;
         }
     });
-    if (produitDansPanier == 0){
-        panier.push(produit);
+    if (productDansPanier == 0){
+        panier.push(product);
     }
     localStorage.setItem('panier',JSON.stringify(panier));
-    enleveStock(produit);
-    display_nb_produits();
+    enleveStock(product);
+    display_nb_products();
     window.location.href="/shopBasket";
 }
 
 // Fonction qui permet de tester de de verifier si il y a encore du stock
-function achat(produit_id,produit_nom,produit_prix,produit_stock) {
-    produit_quantite=parseInt(document.querySelector("#quantité").value);
-    if (produit_stock==0){
+function achat(product_id,product_nom,product_prix,product_stock) {
+    product_quantity=parseInt(document.querySelector("#quantité").value);
+    if (product_stock==0){
         alertify.error("Il n'y a plus de stock pour ce produit");
         return;
     }
-    if (produit_stock < produit_quantite ||  0 > produit_quantite || produit_quantite%1!=0 ) {
+    if (product_stock < product_quantity ||  0 > product_quantity || product_quantity%1!=0 ) {
         return;
     }
     panier=getPanier();
-    produit={id:produit_id,nom:produit_nom,prix:produit_prix,quantite:produit_quantite};
-    produitDansPanier=0;
-    panier.forEach(panier_produit => {
-        if (panier_produit['id'] == produit_id){
-            panier_produit['quantite']+=produit_quantite;
-            produitDansPanier=1;
+    product={id:product_id,nom:product_nom,prix:product_prix,quantity:product_quantity};
+    productDansPanier=0;
+    panier.forEach(panier_product => {
+        if (panier_product['id'] == product_id){
+            panier_product['quantity']+=product_quantity;
+            productDansPanier=1;
         }
     });
-    if (produitDansPanier == 0){
-        panier.push(produit);
+    if (productDansPanier == 0){
+        panier.push(product);
     }
     localStorage.setItem('panier',JSON.stringify(panier));
-    enleveStock(produit);
-    display_nb_produits();
+    enleveStock(product);
+    display_nb_products();
     window.location.href="/catalog";
 }
 
@@ -85,26 +75,26 @@ function getPanier(){
 }
 
 
-function enleveStock(panier_produit){
+function enleveStock(panier_product){
     var _token= $('meta[name="_token"]').attr('content');
-    produit=JSON.stringify(panier_produit);
+    product=JSON.stringify(panier_product);
     $.ajax({
         url:'/enleveStock',
         data: {
-            produit,
+            product,
             _token
         },
         method: 'POST'
     });
 }
 
-function remetStock(panier_produit){
+function remetStock(panier_product){
     var _token= $('meta[name="_token"]').attr('content');
-    produit=JSON.stringify(panier_produit);
+    product=JSON.stringify(panier_product);
     $.ajax({
         url:'/remetStock',
         data: {
-            produit,
+            product,
             _token
         },
         method: 'POST'
@@ -112,18 +102,18 @@ function remetStock(panier_produit){
 }
 
 
-function supprimeProduit(produit_id){
+function supprimeProduit(product_id){
     panier=getPanier();
-    panier.forEach(panier_produit => {
-        if (panier_produit['id'] == produit_id){
-            remetStock(panier_produit);
+    panier.forEach(panier_product => {
+        if (panier_product['id'] == product_id){
+            remetStock(panier_product);
         }
     });
-    document.querySelector("#tr"+produit_id).remove();
+    document.querySelector("#tr"+product_id).remove();
     panier=getPanier();
-    panier=panier.filter((panier_produit) => panier_produit['id'] != produit_id);
+    panier=panier.filter((panier_product) => panier_product['id'] != product_id);
     localStorage.setItem('panier',JSON.stringify(panier));
-    display_nb_produits();
+    display_nb_products();
     display_total();
 }
 
@@ -131,18 +121,18 @@ function supprimeProduit(produit_id){
 // Fonction qui permet de cree le panier/et de l'afficher sous forme de tableau avec le javascript
 function display_panier(){
     contenu_panier=document.querySelector("#items_panier");
-    getPanier().forEach(panier_produit => {
-        contenu_panier.innerHTML += "<tr " + "id='tr" + panier_produit["id"]+ "' ><td>"
-        + panier_produit['nom'] + "</td><td>"
+    getPanier().forEach(panier_product => {
+        contenu_panier.innerHTML += "<tr " + "id='tr" + panier_product["id"]+ "' ><td>"
+        + panier_product['nom'] + "</td><td>"
         + "<form>"
-        + "<input type='hidden' name='produit_id' value=" + panier_produit["id"]+ ">"
-        + "<input type='hidden' name='ancienne_quantite' value=" + panier_produit["quantite"] + ">"
-        + "<input required min='0' type='number' name='nouvelle_quantite' value=" + panier_produit["quantite"] + " get class='modif' />"
-        + "<button type='submit' onclick='changeQuantite(" + panier_produit["id"] + ")' class='update'>update</button>"
+        + "<input type='hidden' name='product_id' value=" + panier_product["id"]+ ">"
+        + "<input type='hidden' name='old_quantity' value=" + panier_product["quantity"] + ">"
+        + `<input required min='0' max=${get_stock(panier_product['id'])} type='number' name='new_quantity' value=${panier_product["quantity"]}  class='modif' />`
+        + "<button type='submit' onclick='changeQuantity(" + panier_product["id"] + ")' class='update'>update</button>"
         + "</form>"
         + "</td><td>"
-        + panier_produit['prix'] + "</td><td>"
-        + "<button onclick='supprimeProduit(" + panier_produit["id"] + ")' class='supp'>x</button></td></tr>"
+        + panier_product['prix'] + "</td><td>"
+        + "<button onclick='supprimeProduit(" + panier_product["id"] + ")' class='supp'>x</button></td></tr>"
     });
     display_total();
 }
@@ -150,45 +140,45 @@ function display_panier(){
 
 
 // Fonction qui permet d'afficher le nombre de produit dans le panier
-function display_nb_produits(){
+function display_nb_products(){
     panier=getPanier();
-    nb_produits=0;
-    panier.forEach(panier_produit => {
-        nb_produits+=panier_produit['quantite'];
+    nb_products=0;
+    panier.forEach(panier_product => {
+        nb_products+=panier_product['quantity'];
     });
-    document.querySelector("#nb_produits").innerHTML=nb_produits;
+    document.querySelector("#nb_products").innerHTML=nb_products;
 }
 
 
 
 
-// Fonction qui permet de changer la quantité du produit depuis le panier
-function changeQuantite(produit_id){
-    tableau=document.querySelector("#tr"+produit_id);
-    nouvelle_quantite=parseInt(tableau.querySelector("input[name='nouvelle_quantite']").value);
-    ancienne_quantite=parseInt(tableau.querySelector("input[name='ancienne_quantite']").value);
-    if (nouvelle_quantite < 0){
+// Fonction qui permet de changer la quantité du product depuis le panier
+function changeQuantity(product_id){
+    tableau=document.querySelector("#tr"+product_id);
+    new_quantity=parseInt(tableau.querySelector("input[name='new_quantity']").value);
+    old_quantity=parseInt(tableau.querySelector("input[name='old_quantity']").value);
+    console.log(new_quantity, old_quantity);
+    if (new_quantity < 0){
         return ;
     }
-    if (nouvelle_quantite==0){
-        supprimeProduit(produit_id)
+    if (new_quantity==0){
+        supprimeProduit(product_id)
         return;
     }
-    stock=parseInt(get_stock(produit_id)) + ancienne_quantite;
-    if (stock < nouvelle_quantite){
-        alertify.error("Impossible de dépasser le stock disponible qui est de " + stock + " pour ce produit");
+    stock=parseInt(get_stock(product_id)) + old_quantity;
+    if (stock < new_quantity){
         return;
     }
     panier=getPanier();
-    panier.forEach(panier_produit => {
-        if (panier_produit['id'] == produit_id){
-            remetStock(panier_produit);
-            panier_produit['quantite']=nouvelle_quantite;
-            enleveStock(panier_produit);
+    panier.forEach(panier_product => {
+        if (panier_product['id'] == product_id){
+            remetStock(panier_product);
+            panier_product['quantity']=new_quantity;
+            enleveStock(panier_product);
         }
     });
     localStorage.setItem('panier',JSON.stringify(panier));
-    display_nb_produits();
+    display_nb_products();
     display_total();
 }
 
@@ -197,8 +187,8 @@ function changeQuantite(produit_id){
 // Cette fonction nous sert à definir le total du prix de la commande
 function display_total(){
     total=0;
-    getPanier().forEach(panier_produit => {
-        total+=panier_produit['quantite']*panier_produit['prix']
+    getPanier().forEach(panier_product => {
+        total+=panier_product['quantity']*panier_product['prix']
     });
     document.querySelector("#total").innerHTML="Total: "+total+" €";
 }
@@ -206,32 +196,32 @@ function display_total(){
 
 
 
-// Cette fonction nous sert a vider le contenue du panier lorsque il n'a pas été acheter, il remet deoncla quantité des produits dans le stock
+// Cette fonction nous sert a vider le contenue du panier lorsque il n'a pas été acheter, il remet deoncla quantité des products dans le stock
 function videPanier(){
     panier=getPanier();;
     if (Object.keys(panier).length == 0 ){
         alertify.error("Votre panier est vide");
     }
-    panier.forEach(panier_produit => {
-        remetStock(panier_produit);
-        document.querySelector("#tr"+panier_produit['id']).remove();
+    panier.forEach(panier_product => {
+        remetStock(panier_product);
+        document.querySelector("#tr"+panier_product['id']).remove();
     });
     localStorage.clear();
-    display_nb_produits();
+    display_nb_products();
     display_total();
 }
 
-// Cette fonction nous sert a vider le contenue du panier lorsque celui est validé, il ne remet donc pas la quantité des produits dans le stock
+// Cette fonction nous sert a vider le contenue du panier lorsque celui est validé, il ne remet donc pas la quantité des products dans le stock
 function videPanier_valide(){
     panier=getPanier();;
     if (Object.keys(panier).length == 0 ){
         alertify.error("votre panier est vide");
     }
-    panier.forEach(panier_produit => {
-        document.querySelector("#tr"+panier_produit['id']).remove();
+    panier.forEach(panier_product => {
+        document.querySelector("#tr"+panier_product['id']).remove();
     });
     localStorage.clear();
-    display_nb_produits();
+    display_nb_products();
     display_total();
 }
 
@@ -241,18 +231,18 @@ function validePanier(){
     var _token= $('meta[name="_token"]').attr('content')
     panier=getPanier();
     let errore = 0;
-    panier.forEach(panier_produit => {
-        produit=JSON.stringify(panier_produit);
+    panier.forEach(panier_product => {
+        product=JSON.stringify(panier_product);
         $.ajax({
             url:'/addShopBasket',
             data: {
-                produit,
+                product,
                 _token
             },
             method: 'POST',
             success: function (){
                 $.ajax({
-                    url: '/validerPanier',
+                    url: '/validateShopBasket',
                     data: {
                         _token
                     },
@@ -275,17 +265,17 @@ function validePanier(){
 };
 
 //fonction qui permet de récuperer le stock d'un produit depuis la database SQL grace à la méthode AJAX
-function get_stock(produit_id){
+function get_stock(product_id){
     var data;
     panier=getPanier();
-    panier.forEach(panier_produit => {
-        if (panier_produit['id'] == produit_id){
-            produit=JSON.stringify(panier_produit);
+    panier.forEach(shopBasket_product => {
+        if (shopBasket_product['id'] == product_id){
+            product=JSON.stringify(shopBasket_product);
             var _token= $('meta[name="_token"]').attr('content')
             $.ajax({
                 url:'/getStock',
                 data: {
-                    produit,
+                    product,
                     _token
                 },
                 method: 'POST',

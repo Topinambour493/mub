@@ -157,25 +157,25 @@ a{
     display: flex;
 }
 
-.panier{
+.shopBasket{
     max-width: 50px;
     max-height: 50px;
     object-fit: contain;
     content:url("/../images/header/panier_noir.png");
 }
 
-.panier:hover{
+.shopBasket:hover{
     content:url("/../images/header/panier_blanc.png");
 }
 
-.containhistorique{
+.containHistory{
     max-width: 50px;
     max-height: 50px;
     object-fit: contain;
     content:url("/../images/header/historique_noir.png");
 }
 
-.containhistorique:hover{
+.containHistory:hover{
     content:url("/../images/header/historique_blanc.png");
 }
 

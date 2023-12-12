@@ -19,7 +19,7 @@
                 @if (Auth::check())
                     @if(Auth::user()->admin == 1)
                         <a href="{{ route('stats') }}" class="menu">Statistiques</a>
-                        <a href="{{ route('adminNouveauProduit') }}" class="menu">Ajout Produit</a>
+                        <a href="{{ route('adminNewProduct') }}" class="menu">Ajout Produit</a>
                     @endif
                 @endif
                 <a href="{{ route('catalog') }}" class="menu">Catalogue</a>
@@ -43,12 +43,12 @@
                 </div>
                 <div class="bas">
                     @if(Auth::check())
-                        @if(Auth::user()->commande_en_cours > 1)
-                            <a href="{{ route('historique') }}"><img alt="historique" class="containhistorique"><a>
+                        @if(Auth::user()->current_order > 1)
+                            <a href="{{ route('history') }}"><img alt="historique" class="containHistory"><a>
                         @endif
                     @endif
-                    <a href="{{ route('shopBasket') }}"><img alt="panier" class="panier"></a>
-                    <p id="nb_produits">0</p>
+                    <a href="{{ route('shopBasket') }}"><img alt="panier" class="shopBasket"></a>
+                    <p id="nb_products">0</p>
                 </div>
             </div>
         </header>
@@ -76,7 +76,7 @@
         <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
         <script>alertify.set('notifier','position', 'top-center');
         </script>
-        <script>display_nb_produits()</script>
+        <script>display_nb_products()</script>
         @yield('script')
     </body>
 </html>

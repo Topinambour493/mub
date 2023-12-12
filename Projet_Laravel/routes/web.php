@@ -53,25 +53,25 @@ Route::get('/connexion',[UserController::class, 'login'])->name('connexion')->mi
 
 Route::get('/deconnexion',[UserController::class, 'disconnect'])->name('deconnexion')->middleware('connected');
 
-Route::post('/ajoutproduct',[ProductController::class, 'addProduct'])->name('ajoutproduct')->middleware('admin');
+Route::post('/addProduct',[ProductController::class, 'addProduct'])->name('addProduct')->middleware('admin');
 
-Route::get('/modification_fiche_product/{id}', [ProductController::class, 'changeProductSheet'])->name("modification_fiche_product")->middleware('admin');
+Route::get('/modificationProductSheet/{id}', [ProductController::class, 'modificationProductSheet'])->name("modificationProductSheet")->middleware('admin');
 
-Route::post('/changementproduct',[ProductController::class, 'changeProduct'])->name('changementproduct')->middleware('admin');
+Route::post('/changeProduct',[ProductController::class, 'changeProduct'])->name('changeProduct')->middleware('admin');
 
-Route::get('/adminNouveauproduct',[ProductController::class,'adminNouveauproduct'])->name('adminNouveauproduct')->middleware('admin');
+Route::get('/adminNewProduct',[ProductController::class,'adminNewProduct'])->name('adminNewProduct')->middleware('admin');
 
-Route::get('/historiqueCommandes',[HistoryController::class, 'orderHistory'])->name('historique')->middleware('connected');
+Route::get('/historyOrders',[HistoryController::class, 'orderHistory'])->name('history')->middleware('connected');
 
 Route::get('/stats', function () {return view('stats');})->name('stats')->middleware('admin');
 
-Route::get('/biggestpurchase', [ShopBasketController::class, 'biggestPurchase'])->middleware('admin');
+Route::get('/biggestPurchase', [ShopBasketController::class, 'biggestPurchase'])->middleware('admin');
 
-Route::get('/nb_commandes', [ShopBasketController::class, 'getNumberOrder'])->middleware('admin');
+Route::get('/getNumberOrder', [ShopBasketController::class, 'getNumberOrder'])->middleware('admin');
 
 Route::post('/addShopBasket',[ShopBasketController::class, 'addShopBasket'])->middleware('connected');
 
-Route::post('/validerShopBasket', [ShopBasketController::class, 'validateShopBasket'])->middleware('connected');
+Route::post('/validateShopBasket', [ShopBasketController::class, 'validateShopBasket'])->middleware('connected');
 
 Route::post('/enleveStock', [ShopBasketController::class, 'removeStock'])->middleware('connected');
 
