@@ -41,17 +41,17 @@ Route::get('/catalog',[ProductController::class, 'catalog'])->name('catalog');
 
 Route::get('/productSheet/{id}',[ProductController::class, 'productSheet'])->name('productSheet');
 
-Route::get('/inscription',[UserController::class, 'register'])->name('inscription')->middleware('guest');
+Route::get('/register',[UserController::class, 'register'])->name('register')->middleware('guest');
 
-Route::post('/inscrit',[UserController::class, 'registered'])->name('inscrit')->middleware('guest');
+Route::post('/registered',[UserController::class, 'registered'])->name('registered')->middleware('guest');
 
 Route::get('/nb_users',[UserController::class, 'getNumberUser'])->middleware('admin');
 
 Route::post('/authentification',[LoginController::class,'authentification'])->name('authentification');
 
-Route::get('/connexion',[UserController::class, 'login'])->name('connexion')->middleware('guest');
+Route::get('/login',[UserController::class, 'login'])->name('connexion')->middleware('guest');
 
-Route::get('/deconnexion',[UserController::class, 'disconnect'])->name('deconnexion')->middleware('connected');
+Route::get('/disconnect',[UserController::class, 'disconnect'])->name('deconnexion')->middleware('connected');
 
 Route::post('/addProduct',[ProductController::class, 'addProduct'])->name('addProduct')->middleware('admin');
 
@@ -73,8 +73,8 @@ Route::post('/addShopBasket',[ShopBasketController::class, 'addShopBasket'])->mi
 
 Route::post('/validateShopBasket', [ShopBasketController::class, 'validateShopBasket'])->middleware('connected');
 
-Route::post('/enleveStock', [ShopBasketController::class, 'removeStock'])->middleware('connected');
+Route::post('/removeStock', [ShopBasketController::class, 'removeStock'])->middleware('connected');
 
-Route::post('/remetStock', [ShopBasketController::class, 'restock'])->middleware('connected');
+Route::post('/refillStock', [ShopBasketController::class, 'restock'])->middleware('connected');
 
 Route::post('/getStock', [ShopBasketController::class, 'getStock'])->middleware('connected');

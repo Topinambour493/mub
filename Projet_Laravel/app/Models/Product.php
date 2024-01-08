@@ -9,6 +9,9 @@ class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * @var int|mixed
+     */
     protected $fillable = [
         'name',
         'price',

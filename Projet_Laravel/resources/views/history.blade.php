@@ -11,7 +11,7 @@
 @section('content')
     <div class="content">
         @foreach ($orders as $shopBasketItems)
-            <div class="paniere">
+            <div class="basketCasee">
                 <div class="numéroCommande">Commande {{ $shopBasketItems[0]->order }} </div>
                 <table>
                     <thead>
@@ -22,12 +22,12 @@
                     <tbody>
                     @foreach ($shopBasketItems as $item)
                         <tr>
-                            <td class="nomprod">
+                            <td class="nameprod">
                                 <a href="{{ route('productSheet', [$item->product_id]) }}"><p
-                                        class="nom">{{ $item->name_product }}</p></a>
+                                        class="name">{{ $item->name_product }}</p></a>
                             </td>
                             <td>{{ $item->quantity }}</td>
-                            <td class="prix"> {{ $item->price }}€</td>
+                            <td class="price"> {{ $item->price }}€</td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -96,7 +96,7 @@ header{
 }
 
 
-.droite{
+.right{
     flex:1;
     display : flex ;
     flex-wrap: wrap;
@@ -107,14 +107,14 @@ header{
 
 }
 
-.haut{
+.up{
     display : flex ;
     flex-wrap: wrap;
     justify-content:flex-end;
     gap: 9px;
 }
 
-.bas{
+.down{
     display : flex ;
     justify-content:flex-end;
 }
@@ -161,11 +161,11 @@ a{
     max-width: 50px;
     max-height: 50px;
     object-fit: contain;
-    content:url("/../images/header/panier_noir.png");
+    content:url("/../images/header/basketCase_noir.png");
 }
 
 .shopBasket:hover{
-    content:url("/../images/header/panier_blanc.png");
+    content:url("/../images/header/basketCase_blanc.png");
 }
 
 .containHistory{

@@ -17,14 +17,14 @@
                 @endforeach
             </div>
         @endif
-        <form action="{{ route('inscrit') }}" method=POST>
+        <form action="{{ route('registered') }}" method=POST>
             @csrf
 
             <h2>Inscription</h2>
-            <label for="prenom">Prénom:</label>
-            <input type="text" id="prenom" name="name"><br/><br/>
-            <label for="nom">Nom:</label>
-            <input type="text" id="nom" name="lastname"><br/><br/>
+            <label for="name">Prénom:</label>
+            <input type="text" id="name" name="name"><br/><br/>
+            <label for="lastname">Nom:</label>
+            <input type="text" id="lastname" name="lastname"><br/><br/>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email"><br/><br/>
             <label for="password">Mot de passe:</label>

@@ -20,9 +20,14 @@ class ProductController extends Controller
 
     public function productSheet($id)
     {
-        return view('productSheet',[
-            'product' => Product::find($id)
-        ]);
+        try{
+            $product = Product::findOrFail($id);
+            return view('productSheet',[
+                'product' => $product
+            ]);
+        } catch (\Exception $e) {
+            return Product::findOrFail($id);
+        }
     }
 
     public function adminNewProduct()

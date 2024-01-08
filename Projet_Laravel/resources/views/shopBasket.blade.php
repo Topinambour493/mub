@@ -2,13 +2,13 @@
 
 
 @section('title')
-MUB Panier
+MUB ShopBasket
 @endsection
 
 
 
 @section('css')
-<link rel="stylesheet" href="/css/panier.css">
+<link rel="stylesheet" href="/css/basketCase.css">
 @endsection
 
 @section('content')
@@ -18,25 +18,25 @@ MUB Panier
                 <p>{{ $message }}</p>
             @endif
         </div>
-        <div class="paniere">
+        <div class="basketCasee">
             <table>
                 <thead>
                     <th>Nom du Produit</th>
                     <th title="Quantity">Quantité</th>
-                    <th > Prix à l'unité</th>  
+                    <th > Prix à l'unité</th>
                     <th > Enlever </th>
                 </thead>
-                <tbody id="items_panier">
+                <tbody id="items_basketCase">
                 </tbody>
             </table>
             <div class="validation">
                 <div id="total"></div>
                 <div>
-                    <button onclick="videPanier()" class="viderpanier">Vider le panier</button>
+                    <button onclick="cleanShopBasket()" class="viderbasketCase">Vider le basketCase</button>
                 </div>
                 <form onsubmit="return false">
                     @csrf
-                    <button id="validerpanier" onclick="validePanier()">Valider le panier</button>
+                    <button id="validerbasketCase" onclick="validationShopBasket()">Valider le basketCase</button>
                 </form>
 
             </div>
@@ -46,5 +46,5 @@ MUB Panier
 
 
 @section('script')
-    <script>display_panier()</script>
+    <script>display_basketCase()</script>
 @endsection

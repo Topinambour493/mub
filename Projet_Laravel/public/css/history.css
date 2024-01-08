@@ -8,7 +8,7 @@
     font-weight:bold;
 }
 
-.nom:hover{
+.name:hover{
     color:white;
 }
 
@@ -24,7 +24,7 @@ h1{
     display: flex;
 }
 
-.paniere{
+.basketCasee{
     align-self:center;
     display:flex;
     flex-direction:column;
@@ -32,7 +32,7 @@ h1{
     margin:30px;
 }
 
-.nomduproduit{
+.nameduproduit{
     text-align: center;
 }
 

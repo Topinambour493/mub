@@ -3,32 +3,32 @@ function vide_notif(){
 }
 
 // Fonction qui permet d'acheter directement n'importe quel produit depuis le catalogue en l'ajoutant au panier
-function achatDirect(product_id,product_nom,product_prix,product_stock) {
+function purchasingDirect(product_id,product_name,product_price,product_stock) {
     if (product_stock == 0){
         alertify.error("Il n'y a plus de stock pour ce produit");
         return;
     }
-    panier=getPanier();
-    product={id:product_id,nom:product_nom,prix:product_prix,quantity:1};
-    productDansPanier=0;
-    panier.forEach(panier_product => {
-        if (panier_product['id'] == product_id){
-            panier_product['quantity']+=1;
-            productDansPanier=1;
+    basketCase=getShopBasket();
+    product={id:product_id,name:product_name,price:product_price,quantity:1};
+    productInShopBasket=0;
+    basketCase.forEach(basketCase_product => {
+        if (basketCase_product['id'] == product_id){
+            basketCase_product['quantity']+=1;
+            productInShopBasket=1;
         }
     });
-    if (productDansPanier == 0){
-        panier.push(product);
+    if (productInShopBasket == 0){
+        basketCase.push(product);
     }
-    localStorage.setItem('panier',JSON.stringify(panier));
-    enleveStock(product);
+    localStorage.setItem('basketCase',JSON.stringify(basketCase));
+    removeStock(product);
     display_nb_products();
     window.location.href="/shopBasket";
 }
 
 // Fonction qui permet de tester de de verifier si il y a encore du stock
-function achat(product_id,product_nom,product_prix,product_stock) {
-    product_quantity=parseInt(document.querySelector("#quantité").value);
+function purchasing(product_id,product_name,product_price,product_stock) {
+    product_quantity=parseInt(document.querySelector("#quantity").value);
     if (product_stock==0){
         alertify.error("Il n'y a plus de stock pour ce produit");
         return;
@@ -36,50 +36,50 @@ function achat(product_id,product_nom,product_prix,product_stock) {
     if (product_stock < product_quantity ||  0 > product_quantity || product_quantity%1!=0 ) {
         return;
     }
-    panier=getPanier();
-    product={id:product_id,nom:product_nom,prix:product_prix,quantity:product_quantity};
-    productDansPanier=0;
-    panier.forEach(panier_product => {
-        if (panier_product['id'] == product_id){
-            panier_product['quantity']+=product_quantity;
-            productDansPanier=1;
+    basketCase=getShopBasket();
+    product={id:product_id,name:product_name,price:product_price,quantity:product_quantity};
+    productInShopBasket=0;
+    basketCase.forEach(basketCase_product => {
+        if (basketCase_product['id'] == product_id){
+            basketCase_product['quantity']+=product_quantity;
+            productInShopBasket=1;
         }
     });
-    if (productDansPanier == 0){
-        panier.push(product);
+    if (productInShopBasket == 0){
+        basketCase.push(product);
     }
-    localStorage.setItem('panier',JSON.stringify(panier));
-    enleveStock(product);
+    localStorage.setItem('basketCase',JSON.stringify(basketCase));
+    removeStock(product);
     display_nb_products();
     window.location.href="/catalog";
 }
 
 
 function viewLogin(){
-    window.location.href="/inscription";
+    window.location.href="/register"
 }
 
 
-function viewPanier(){
-    window.location.href="/panier";
+function viewShopBasket(){
+    window.location.href="/basketCase";
 }
 
 
-function getPanier(){
-    if (JSON.parse(localStorage.getItem('panier')) == null){
-        panier=[];
+function getShopBasket(){
+    if (JSON.parse(localStorage.getItem('basketCase')) == null){
+        basketCase=[];
     } else {
-        panier=JSON.parse(localStorage.getItem('panier'));
+        basketCase=JSON.parse(localStorage.getItem('basketCase'));
     }
-    return panier;
+    return basketCase;
 }
 
 
-function enleveStock(panier_product){
+function removeStock(basketCase_product){
     var _token= $('meta[name="_token"]').attr('content');
-    product=JSON.stringify(panier_product);
+    product=JSON.stringify(basketCase_product);
     $.ajax({
-        url:'/enleveStock',
+        url:'/removeStock',
         data: {
             product,
             _token
@@ -88,11 +88,11 @@ function enleveStock(panier_product){
     });
 }
 
-function remetStock(panier_product){
+function refillStock(basketCase_product){
     var _token= $('meta[name="_token"]').attr('content');
-    product=JSON.stringify(panier_product);
+    product=JSON.stringify(basketCase_product);
     $.ajax({
-        url:'/remetStock',
+        url:'/refillStock',
         data: {
             product,
             _token
@@ -102,37 +102,37 @@ function remetStock(panier_product){
 }
 
 
-function supprimeProduit(product_id){
-    panier=getPanier();
-    panier.forEach(panier_product => {
-        if (panier_product['id'] == product_id){
-            remetStock(panier_product);
+function deleteProduit(product_id){
+    basketCase=getShopBasket();
+    basketCase.forEach(basketCase_product => {
+        if (basketCase_product['id'] == product_id){
+            refillStock(basketCase_product);
         }
     });
     document.querySelector("#tr"+product_id).remove();
-    panier=getPanier();
-    panier=panier.filter((panier_product) => panier_product['id'] != product_id);
-    localStorage.setItem('panier',JSON.stringify(panier));
+    basketCase=getShopBasket();
+    basketCase=basketCase.filter((basketCase_product) => basketCase_product['id'] != product_id);
+    localStorage.setItem('basketCase',JSON.stringify(basketCase));
     display_nb_products();
     display_total();
 }
 
 
 // Fonction qui permet de cree le panier/et de l'afficher sous forme de tableau avec le javascript
-function display_panier(){
-    contenu_panier=document.querySelector("#items_panier");
-    getPanier().forEach(panier_product => {
-        contenu_panier.innerHTML += "<tr " + "id='tr" + panier_product["id"]+ "' ><td>"
-        + panier_product['nom'] + "</td><td>"
+function display_basketCase(){
+    content_basketCase=document.querySelector("#items_basketCase");
+    getShopBasket().forEach(basketCase_product => {
+        content_basketCase.innerHTML += "<tr " + "id='tr" + basketCase_product["id"]+ "' ><td>"
+        + basketCase_product['name'] + "</td><td>"
         + "<form>"
-        + "<input type='hidden' name='product_id' value=" + panier_product["id"]+ ">"
-        + "<input type='hidden' name='old_quantity' value=" + panier_product["quantity"] + ">"
-        + `<input required min='0' max=${get_stock(panier_product['id'])} type='number' name='new_quantity' value=${panier_product["quantity"]}  class='modif' />`
-        + "<button type='submit' onclick='changeQuantity(" + panier_product["id"] + ")' class='update'>update</button>"
+        + "<input type='hidden' name='product_id' value=" + basketCase_product["id"]+ ">"
+        + "<input type='hidden' name='old_quantity' value=" + basketCase_product["quantity"] + ">"
+        + `<input required min='0' max=${get_stock(basketCase_product['id'])} type='number' name='new_quantity' value=${basketCase_product["quantity"]}  class='modif' />`
+        + "<button type='submit' onclick='changeQuantity(" + basketCase_product["id"] + ")' class='update'>update</button>"
         + "</form>"
         + "</td><td>"
-        + panier_product['prix'] + "</td><td>"
-        + "<button onclick='supprimeProduit(" + panier_product["id"] + ")' class='supp'>x</button></td></tr>"
+        + basketCase_product['price'] + "</td><td>"
+        + "<button onclick='deleteProduit(" + basketCase_product["id"] + ")' class='supp'>x</button></td></tr>"
     });
     display_total();
 }
@@ -141,10 +141,10 @@ function display_panier(){
 
 // Fonction qui permet d'afficher le nombre de produit dans le panier
 function display_nb_products(){
-    panier=getPanier();
+    basketCase=getShopBasket();
     nb_products=0;
-    panier.forEach(panier_product => {
-        nb_products+=panier_product['quantity'];
+    basketCase.forEach(basketCase_product => {
+        nb_products+=basketCase_product['quantity'];
     });
     document.querySelector("#nb_products").innerHTML=nb_products;
 }
@@ -162,33 +162,33 @@ function changeQuantity(product_id){
         return ;
     }
     if (new_quantity==0){
-        supprimeProduit(product_id)
+        deleteProduit(product_id)
         return;
     }
     stock=parseInt(get_stock(product_id)) + old_quantity;
     if (stock < new_quantity){
         return;
     }
-    panier=getPanier();
-    panier.forEach(panier_product => {
-        if (panier_product['id'] == product_id){
-            remetStock(panier_product);
-            panier_product['quantity']=new_quantity;
-            enleveStock(panier_product);
+    basketCase=getShopBasket();
+    basketCase.forEach(basketCase_product => {
+        if (basketCase_product['id'] == product_id){
+            refillStock(basketCase_product);
+            basketCase_product['quantity']=new_quantity;
+            removeStock(basketCase_product);
         }
     });
-    localStorage.setItem('panier',JSON.stringify(panier));
+    localStorage.setItem('basketCase',JSON.stringify(basketCase));
     display_nb_products();
     display_total();
 }
 
 
 
-// Cette fonction nous sert à definir le total du prix de la commande
+// Cette fonction nous sert à definir le total du price de la commande
 function display_total(){
     total=0;
-    getPanier().forEach(panier_product => {
-        total+=panier_product['quantity']*panier_product['prix']
+    getShopBasket().forEach(basketCase_product => {
+        total+=basketCase_product['quantity']*basketCase_product['price']
     });
     document.querySelector("#total").innerHTML="Total: "+total+" €";
 }
@@ -197,14 +197,14 @@ function display_total(){
 
 
 // Cette fonction nous sert a vider le contenue du panier lorsque il n'a pas été acheter, il remet deoncla quantité des products dans le stock
-function videPanier(){
-    panier=getPanier();;
-    if (Object.keys(panier).length == 0 ){
+function cleanShopBasket(){
+    basketCase=getShopBasket();;
+    if (Object.keys(basketCase).length == 0 ){
         alertify.error("Votre panier est vide");
     }
-    panier.forEach(panier_product => {
-        remetStock(panier_product);
-        document.querySelector("#tr"+panier_product['id']).remove();
+    basketCase.forEach(basketCase_product => {
+        refillStock(basketCase_product);
+        document.querySelector("#tr"+basketCase_product['id']).remove();
     });
     localStorage.clear();
     display_nb_products();
@@ -212,13 +212,13 @@ function videPanier(){
 }
 
 // Cette fonction nous sert a vider le contenue du panier lorsque celui est validé, il ne remet donc pas la quantité des products dans le stock
-function videPanier_valide(){
-    panier=getPanier();;
-    if (Object.keys(panier).length == 0 ){
+function cleanShopBasket_validation(){
+    basketCase=getShopBasket();;
+    if (Object.keys(basketCase).length == 0 ){
         alertify.error("votre panier est vide");
     }
-    panier.forEach(panier_product => {
-        document.querySelector("#tr"+panier_product['id']).remove();
+    basketCase.forEach(basketCase_product => {
+        document.querySelector("#tr"+basketCase_product['id']).remove();
     });
     localStorage.clear();
     display_nb_products();
@@ -227,12 +227,12 @@ function videPanier_valide(){
 
 
 // Ici voici la fonction qui nous permet de valider notre panier avec la methode ajax
-function validePanier(){
+function validationShopBasket(){
     var _token= $('meta[name="_token"]').attr('content')
-    panier=getPanier();
+    basketCase=getShopBasket();
     let errore = 0;
-    panier.forEach(panier_product => {
-        product=JSON.stringify(panier_product);
+    basketCase.forEach(basketCase_product => {
+        product=JSON.stringify(basketCase_product);
         $.ajax({
             url:'/addShopBasket',
             data: {
@@ -253,7 +253,7 @@ function validePanier(){
                         }
                     }
                 });
-                videPanier_valide();
+                cleanShopBasket_validation();
             },
             error: function (error) {
                 console.log(error["responseJSON"]);
@@ -267,8 +267,8 @@ function validePanier(){
 //fonction qui permet de récuperer le stock d'un produit depuis la database SQL grace à la méthode AJAX
 function get_stock(product_id){
     var data;
-    panier=getPanier();
-    panier.forEach(shopBasket_product => {
+    basketCase=getShopBasket();
+    basketCase.forEach(shopBasket_product => {
         if (shopBasket_product['id'] == product_id){
             product=JSON.stringify(shopBasket_product);
             var _token= $('meta[name="_token"]').attr('content')

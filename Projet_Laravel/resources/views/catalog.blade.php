@@ -19,15 +19,22 @@
         <div class="container">
             @foreach ($products as $product)
                 <div class="bloc">
-                    <div class="centre"><a href="{{ route('productSheet', [$product->id]) }}"><img src="/disk_products/{{$product->image}}" alt="{{$product->name}}" class="contain"></a><br/></div>
+                    <div class="centre">
+                        <a href="{{ route('productSheet', [$product->id]) }}">
+                            <img src="/disk_products/{{$product->image}}" alt="{{$product->name}}" class="contain">
+                        </a><br/>
+                    </div>
                     <div class="centre">{{$product->name}}</br></div>
                     <div class="centre">
                         <a href="{{ route('productSheet', [$product->id]) }}"><button>Détail</button></a>
                         <form onsubmit="return false">
                             @csrf
-                            <button @if (Auth::check()) onclick="achatDirect({{ $product->id}},'{{ $product->name}}',{{ $product->price}},{{ $product->stock}})" @else onclick="viewLogin()" @endif >Achat Direct</button>
-                        </form>
-                        <br/>
+                            <button
+                                @if (Auth::check())
+                                    onclick="purchasingDirect({{ $product->id}},'{{ $product->name}}',{{ $product->price}},{{ $product->stock}})"
+                                @else
+                                    onclick="viewLogin()" @endif >Achat Direct</button>
+                        </form><br/>
                         @if (Auth::check())
                             @if(Auth::user()->admin == 1)
                                 <a href="{{ route("modificationProductSheet", [$product->id]) }}"><button> Modifier la fiche produit</button></a>

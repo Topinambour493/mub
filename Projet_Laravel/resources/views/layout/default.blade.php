@@ -25,8 +25,8 @@
                 <a href="{{ route('catalog') }}" class="menu">Catalogue</a>
                 <div id="notification"></div>
             </div>
-            <div class="droite">
-                <div class="haut">
+            <div class="right">
+                <div class="up">
                     @if (Auth::check())
                         <a href="{{ route('deconnexion') }}" class="auth">Deconnexion</a>
                         <div class="user_connected">
@@ -37,11 +37,11 @@
                             <span>{{ Auth::user()->lastname }}</span>
                         </div>
                     @else
-                        <a href="{{ route('inscription') }}" class="auth" onclick="localStorage.clear()">Inscription</a>
+                        <a href="{{ route('register') }}" class="auth" onclick="localStorage.clear()">Inscription</a>
                         <a href="{{ route('connexion') }}" class="auth" onclick="localStorage.clear()">Connexion</a>
                     @endif
                 </div>
-                <div class="bas">
+                <div class="down">
                     @if(Auth::check())
                         @if(Auth::user()->current_order > 1)
                             <a href="{{ route('history') }}"><img alt="historique" class="containHistory"><a>
@@ -71,7 +71,7 @@
             </div>
         </footer>
         <script type="text/javascript" src="/js/RGPD.js"></script>
-        <script type="text/javascript" src="/js/gestion_panier.js"></script>
+        <script type="text/javascript" src="/js/gestion_basketCase.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
         <script>alertify.set('notifier','position', 'top-center');

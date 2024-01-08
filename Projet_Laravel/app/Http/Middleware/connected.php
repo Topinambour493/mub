@@ -20,6 +20,6 @@ class connected
         if (Auth::check()){
             return $next($request);
     }
-        return redirect('inscription');
+        return redirect('register');
     }
 }
